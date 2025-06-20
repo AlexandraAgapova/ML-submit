@@ -1,0 +1,5 @@
+torch>=1.7
+torchvision
+pillow
+pandas
+git+https://github.com/ultralytics/yolov5.git
