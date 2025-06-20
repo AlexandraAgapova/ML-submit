@@ -33,12 +33,20 @@ pip install -r requirements.txt
 ## Запуск инференса
 
 ```bash
-python inference.py --source images
+python3 test.py --images images --predictions predictions
+
 ```
 
-- `--source` — папка с изображениями
-- `--output` — папка для сохранения `.txt` в формате yolo: `<class> <x_center> <y_center> <w> <h>`
-- `--conf-thres` — минимальный порог уверенности
+- `--weights`     — путь к файлу весов (по умолчанию `best.pt`)
+- `--source`      — папка с исходными изображениями
+- `--output`      — папка для сохранения `.txt` (создаётся автоматически)
+- `--patch-size`  — размер квадратного патча (px)
+- `--stride`      — шаг скольжения окна (px)
+- `--conf-thres`  — порог уверенности (0.0–1.0)
+- `--iou-thres`   — порог NMS IoU (0.0–1.0)
+- `--imgsz`       — размер, к которому ресайзятся патчи для модели (px)
+- `--device`      — CUDA device (например `"0"`) или `"cpu"`
+
 
 После запуска в папке `predictions/` появятся файлы:
 
