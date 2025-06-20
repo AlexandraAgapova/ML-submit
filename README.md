@@ -4,7 +4,7 @@
 
 ## Структура репозитория
 
-your-yolov5-submission/
+ML-submit/
 ├── best.pt
 ├── inference.py
 ├── requirements.txt
