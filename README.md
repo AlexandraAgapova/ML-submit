@@ -5,6 +5,7 @@
 ## Структура репозитория
 
 ML-submit/
+
 ├── best.pt
 ├── inference.py
 ├── requirements.txt
