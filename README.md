@@ -5,11 +5,11 @@
 ## Структура репозитория
 
 ML-submit/
-
 ├── best.pt
 ├── inference.py
 ├── requirements.txt
 └── README.md
+
 
 - **best.pt** — обученные веса
 - **inference.py** — скрипт для инференса изображений и сохранения `.txt`
