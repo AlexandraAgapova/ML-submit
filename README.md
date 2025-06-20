@@ -1,6 +1,6 @@
 # YOLOv5 Submission
 
-Этот репозиторий позволяет быстро выполнить инференс `best.pt` и получить предсказания в формате YOLO (txt-файлы).
+Этот репозиторий позволяет выполнить инференс `best.pt` и получить предсказания в формате YOLO txt-файлы
 
 ## Структура репозитория
 
@@ -33,10 +33,9 @@ pip install -r requirements.txt
 ## Запуск инференса
 
 ```bash
-python inference.py --weights best.pt --source images --output predictions --conf-thres 0.50
+python inference.py --source images
 ```
 
-- `--weights` — путь к весам
 - `--source` — папка с изображениями
 - `--output` — папка для сохранения `.txt` в формате yolo: `<class> <x_center> <y_center> <w> <h>`
 - `--conf-thres` — минимальный порог уверенности
