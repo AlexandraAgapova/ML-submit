@@ -16,7 +16,6 @@ def run(
     imgsz: int,
     device: str
 ):
-    # Создаём папку для предсказаний
     os.makedirs(output, exist_ok=True)
     model = YOLO(weights)
 
@@ -31,13 +30,14 @@ def run(
             continue
 
         h, w = img.shape[:2]
+
         nh = int(np.ceil((h - patch_size) / stride)) + 1
         nw = int(np.ceil((w - patch_size) / stride)) + 1
         new_h = (nh - 1) * stride + patch_size
         new_w = (nw - 1) * stride + patch_size
-
         pad_h = (new_h - h) // 2
         pad_w = (new_w - w) // 2
+
         canvas = np.zeros((new_h, new_w, 3), dtype=np.uint8)
         canvas[pad_h:pad_h + h, pad_w:pad_w + w] = img
 
@@ -69,17 +69,18 @@ def run(
                     for (xc, yc, pw, ph), score, cls in zip(boxes, scores, classes):
                         if score < conf:
                             continue
+
                         x_abs = xc + x1
                         y_abs = yc + y1
                         total_boxes.append([x_abs, y_abs, pw, ph])
                         total_classes.append(cls)
 
         yolo_lines = []
-        for (xc, yc, pw, ph), cls in zip(total_boxes, total_classes):
-            x_center = xc / new_w
-            y_center = yc / new_h
-            w_norm = pw / new_w
-            h_norm = ph / new_h
+        for (x_abs, y_abs, pw, ph), cls in zip(total_boxes, total_classes):
+            x_center = (x_abs - pad_w) / w
+            y_center = (y_abs - pad_h) / h
+            w_norm = pw / w
+            h_norm = ph / h
             yolo_lines.append(f"{cls} {x_center:.6f} {y_center:.6f} {w_norm:.6f} {h_norm:.6f}")
 
         txt_path = Path(output) / f"{Path(file).stem}.txt"
@@ -90,7 +91,7 @@ def run(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="YOLO sliding-window inference — сохраняет .txt"
+        description="YOLO inference сохраняет .txt"
     )
     parser.add_argument(
         "--weights", type=str, default="best.pt",
