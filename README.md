@@ -4,13 +4,6 @@
 
 ## Структура репозитория
 
-ML-submit/
-├── best.pt
-├── inference.py
-├── requirements.txt
-└── README.md
-
-
 - **best.pt** — обученные веса
 - **inference.py** — скрипт для инференса изображений и сохранения `.txt`
 - **requirements.txt** — все зависимости
@@ -33,12 +26,7 @@ pip install -r requirements.txt
 
 ## Подготовка данных
 
-Создайте папку `images/` с изображениями форматов `.jpg` или `.png`, например:
-
-images/
-├── img1.jpg
-├── img2.png
-└── ...
+Создайте папку `images/` с изображениями форматов `.jpg` или `.png`
 
 ---
 
@@ -51,14 +39,11 @@ python inference.py --weights best.pt --source images --output predictions --con
 - `--weights` — путь к весам
 - `--source` — папка с изображениями
 - `--output` — папка для сохранения `.txt` в формате yolo: `<class> <x_center> <y_center> <w> <h>`
-- `--conf-thres` — минимальный порог уверенности (0.0–1.0)
+- `--conf-thres` — минимальный порог уверенности
 
 После запуска в папке `predictions/` появятся файлы:
 
-predictions/
-├── img1.txt
-├── img2.txt
-└── ...
+predictions/img1.txt, predictions/img2.txt
 
 ---
 
