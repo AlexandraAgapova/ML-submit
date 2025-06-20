@@ -42,13 +42,13 @@ python inference.py --source images
 
 После запуска в папке `predictions/` появятся файлы:
 
-predictions/img1.txt, predictions/img2.txt
+predictions/img1.txt, predictions/img2.txt и т.д
 
 ---
 
 ## Формат выходных файлов
 
-Каждый `.txt` файл должен содержать по одной строке для каждого обнаруженного объекта:
+Каждый `.txt` файл содержит по одной строке для каждого обнаруженного объекта:
 
 ```
 <class_id> <x_center_norm> <y_center_norm> <width_norm> <height_norm>
